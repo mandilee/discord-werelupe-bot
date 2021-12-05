@@ -3,7 +3,13 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-express().listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const server = express().listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+server.on('connection', function(socket) {
+  console.log("A new connection was made by a client.");
+  socket.setTimeout(60 * 60 * 1000);
+  // 30 second timeout. Change this as you see fit.
+});
 
 
 const { Client, Intents, MessageEmbed } = require('discord.js');
