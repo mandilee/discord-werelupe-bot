@@ -17,6 +17,11 @@ const client = new Client({
   ]
 })
 
+// Automatically reconnect if the bot disconnects due to inactivity
+client.on('disconnect', function(erMsg, code) {
+    console.log('----- Bot disconnected from Discord with code', code, 'for reason:', erMsg, '-----');
+    client.connect();
+});
 
 //import fetch functionality from node
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
