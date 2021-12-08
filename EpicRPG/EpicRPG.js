@@ -22,7 +22,7 @@ function EpicRPG(message) {
 
     // Add RIP when beating miniboss
     if (this.message.content.indexOf('HAS BEEN DEFEATED') > 0) {
-      this.message.react("602574893745307668");
+      this.message.react("💀");
     }
 
     // Party when beating the dragon
