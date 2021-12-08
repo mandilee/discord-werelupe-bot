@@ -47,6 +47,9 @@ const cg = require('./ComplimentGiver/ComplimentGiver.js');
 //import Insult Giver
 const ig = require('./InsultGiver/InsultGiver.js');
 
+//import EpicRPG
+require('./EpicRPG/EpicRPG.js');
+
 //Function to check if a string matches regardless of case
 function sameCase(str) {
   return /^[A-Z]+$/.test(str) || /^[a-z]+$/.test(str);
@@ -86,29 +89,6 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
 
   //turn the message to Lower Case for comparisons
   let lowerCaseMessageContent = message.content.toLowerCase();
-
-  /* EPIC RPG */ //Moved up to avoid bot excluder
-  // Add a warning heart react if HP drops below 30%
-  // Add a warning triangle if (lost HP*2) > remaining HP
-  if (message.content.indexOf('remaining HP is') > 0) {
-    let str = message.content.split('HP, remaining HP is');
-    let lostHp = str[0].split('Lost');
-    let health = str[1].split('/'),
-        fullhealth = health[1].split('*');
-    if ((health[0] / fullhealth[0]) < 0.3) { message.react("❣️"); }
-    if ((lostHp[1] * 2) > health[0]) { message.react("⚠️"); }
-    message.channel.send({
-      "embeds": [
-        {
-          "color": 0xffbb00,
-          "author": {
-            "name": fullhealth[0],
-            //"icon_url": `https://images.neopets.com/games/arcade/cat/luck_chance_50x50.png`
-          }
-        }
-      ]
-    });
-  }
 
   //Don't have the bot react to itself
   if (message.author.bot) return
