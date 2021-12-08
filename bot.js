@@ -195,8 +195,9 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
       else {
 
         //import responses need to fix this so the + variables work
-        //const response = require('./NeopetCaptions.json');
+        const response = require('./NeopetCaptions.json');
 
+        /*
         const response = [
           "That's a cute one!",
           "I love " + colorCap + " pets!",
@@ -214,11 +215,13 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
           "If only I could afford a " + colorCap + " Paint Brush...",
           "You should definitely give your neopoints to Rodolfo so he can make this pet"
         ];
+        //*/
         
         //RNG the response
         var rng = getRandomInt(response.length);
         //get the response here
         finalCaption = response[rng];
+        finalCaption.replace("%c", colorCap).replace("%p", petCap);
 
         //special caption for aubergine chia
         if (pet === "chia" && color === "aubergine") finalCaption = "🍆🍆 Sexy Time 🍆🍆";
