@@ -79,7 +79,7 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
   let lowerCaseMessageContent = message.content.toLowerCase();
 
   /* EPIC RPG */ //Moved up to avoid bot excluder
-  (new epicRpg.EpicRPG(message)).check();
+  (new rpg.EpicRPG(message)).check();
 
   //Don't have the bot react to itself
   if (message.author.bot) return
