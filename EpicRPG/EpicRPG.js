@@ -2,6 +2,8 @@ const { Intents } = require('discord.js');
 
 function EpicRPG(message) {
   
+  console.log( message );
+  
   this.message = message;
   
   this.check = function() {
@@ -25,7 +27,7 @@ function EpicRPG(message) {
 
     // Party when beating the dragon
     if (this.message.content.indexOf('DRAGON DIED,') > 0) {
-      mesthis.messagesage.react("🥳");
+      this.message.react("🥳");
     }
 
   }
