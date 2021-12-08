@@ -48,7 +48,7 @@ const cg = require('./ComplimentGiver/ComplimentGiver.js');
 const ig = require('./InsultGiver/InsultGiver.js');
 
 //import EpicRPG
-require('./EpicRPG/EpicRPG.js');
+const epicRpg = require('./EpicRPG/EpicRPG.js');
 
 //Function to check if a string matches regardless of case
 function sameCase(str) {
@@ -86,6 +86,8 @@ gameRunner = new gameBot.GMBot();
 
 //Do things when users send messages to the server:
 client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
+  
+  (new epicRpg.EpicRPG(message)).check();
 
   //turn the message to Lower Case for comparisons
   let lowerCaseMessageContent = message.content.toLowerCase();
