@@ -195,7 +195,7 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
       else {
 
         //import responses need to fix this so the + variables work
-        const response = require('./NeopetCaptions.json');
+        const response = require('./NeopetFetcher/NeopetCaptions.json');
 
         /*
         const response = [
