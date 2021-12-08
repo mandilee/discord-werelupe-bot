@@ -96,6 +96,17 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
     let health = str[1].split('/');
     if ((health[0] / health[1]) < 0.3) { message.react("❣️"); }
     if ((lostHp[1] * 2) > health[0]) { message.react("⚠️"); }
+    message.channel.send({
+      "embeds": [
+        {
+          "color": 0xffbb00,
+          "author": {
+            "name": health[1],
+            //"icon_url": `https://images.neopets.com/games/arcade/cat/luck_chance_50x50.png`
+          }
+        }
+      ]
+    });
   }
 
   //Don't have the bot react to itself
