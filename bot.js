@@ -221,7 +221,7 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
         var rng = getRandomInt(response.length);
         //get the response here
         finalCaption = response[rng];
-        finalCaption.replace('%c', colorCap).replace('%p', petCap);
+        finalCaption.replace('\%c', colorCap).replace('\%p', petCap);
 
         //special caption for aubergine chia
         if (pet === "chia" && color === "aubergine") finalCaption = "🍆🍆 Sexy Time 🍆🍆";
