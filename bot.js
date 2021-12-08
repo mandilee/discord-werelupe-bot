@@ -93,15 +93,16 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
   if (message.content.indexOf('remaining HP is') > 0) {
     let str = message.content.split('HP, remaining HP is');
     let lostHp = str[0].split('Lost');
-    let health = str[1].split('/');
-    if ((health[0] / health[1]) < 0.3) { message.react("❣️"); }
+    let health = str[1].split('/'),
+        fullhealth = health[1].split('*');
+    if ((health[0] / fullhealth[0]) < 0.3) { message.react("❣️"); }
     if ((lostHp[1] * 2) > health[0]) { message.react("⚠️"); }
     message.channel.send({
       "embeds": [
         {
           "color": 0xffbb00,
           "author": {
-            "name": health[1],
+            "name": fullhealth[0],
             //"icon_url": `https://images.neopets.com/games/arcade/cat/luck_chance_50x50.png`
           }
         }
