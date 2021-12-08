@@ -5,13 +5,6 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const server = express().listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-server.on('connection', function(socket) {
-  console.log("A new connection was made by a client.");
-  socket.setTimeout(60 * 60 * 1000);
-  // 30 second timeout. Change this as you see fit.
-});
-
-
 const { Client, Intents, MessageEmbed } = require('discord.js');
 
 const client = new Client({
@@ -23,11 +16,6 @@ const client = new Client({
   ]
 })
 
-// Automatically reconnect if the bot disconnects due to inactivity
-client.on('disconnect', function(erMsg, code) {
-    console.log('----- Bot disconnected from Discord with code', code, 'for reason:', erMsg, '-----');
-    client.connect();
-});
 
 //import fetch functionality from node
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
@@ -48,7 +36,7 @@ const cg = require('./ComplimentGiver/ComplimentGiver.js');
 const ig = require('./InsultGiver/InsultGiver.js');
 
 //import EpicRPG
-const epicRpg = require('./EpicRPG/EpicRPG.js');
+const rpg = require('./EpicRPG/EpicRPG.js');
 
 //Function to check if a string matches regardless of case
 function sameCase(str) {
@@ -86,11 +74,12 @@ gameRunner = new gameBot.GMBot();
 
 //Do things when users send messages to the server:
 client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
-  
-  (new epicRpg.EpicRPG(message)).check();
 
   //turn the message to Lower Case for comparisons
   let lowerCaseMessageContent = message.content.toLowerCase();
+
+  /* EPIC RPG */ //Moved up to avoid bot excluder
+  (new epicRpg.EpicRPG(message)).check();
 
   //Don't have the bot react to itself
   if (message.author.bot) return
@@ -387,7 +376,6 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
 
 
 }); //End bracket for 'do things when messages are sent to server'
-
 
 
 //Start the bot
