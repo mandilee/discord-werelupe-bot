@@ -115,6 +115,16 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
     insulter = new ig.InsultGiver (message);
     insulter.give();
   }
+  
+  if (lowerCaseMessageContent.indexOf("bad bot") >= 0 || lowerCaseMessageContent.indexOf("bad werelupe") >= 0) {
+    message.channel.send({
+          embeds: [
+            {
+              title: 'Werelupe-bot is sorry ☹️'
+            }
+          ],
+        })
+  }
 
 
   //Compliment Giver for Neo
