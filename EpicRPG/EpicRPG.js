@@ -52,7 +52,7 @@ function EpicRPG(message) {
     // Collect Fish
     if (msgTxt.indexOf('Type FISH (once) to collect some fish!') > 0) {
       this.responseEmbed.setDescription("<@&928404367063777311> fish");
-      this.message.channel.send({ embeds: [this.responseEmbed] });
+      this.message.channel.send("<@&928404367063777311> fish");
     }
     
     // Collect Fish
