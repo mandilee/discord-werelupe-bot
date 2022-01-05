@@ -29,7 +29,8 @@ function EpicRPG(message) {
       this.message.react("🥳");
     }
     
-      this.message.messageChannel.send("<@&928404367063777311> Test");
+      this.responseEmbed.setDescription("<@&928404367063777311>");
+      this.message.channel.send({ embeds: [this.responseEmbed] });
     
 
   }
