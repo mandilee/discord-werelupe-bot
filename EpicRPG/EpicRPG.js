@@ -61,7 +61,7 @@ function EpicRPG(message) {
       action = "chop";
     }
     
-    if (action <> false) {
+    if (action != false) {
       this.message.channel.send(epicRoleId + ' ' + action);      
     }
 
