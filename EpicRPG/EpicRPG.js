@@ -1,12 +1,12 @@
 const { Intents } = require('discord.js');
-const { MessageEmbed } = require('discord.js');
 
 function EpicRPG(message) {
   
   this.message = message;
-  this.responseEmbed = new MessageEmbed();
   
   let msgTxt = this.message.content;
+  let epicRoleId = '<@&928404367063777311>';
+  let action = false;
   
   this.check = function() {
   
@@ -33,38 +33,36 @@ function EpicRPG(message) {
     
     // Join Arena
     if (msgTxt.indexOf('Type join to join the arena!') > 0) {
-      this.responseEmbed.setDescription("<@&928404367063777311> join");
-      this.message.channel.send({ embeds: [this.responseEmbed] });
+      action = "join";
     }
     
     // Fight Miniboss
     if (msgTxt.indexOf('Type fight to help and get a reward!') > 0) {
-      this.responseEmbed.setDescription("<@&928404367063777311> fight");
-      this.message.channel.send({ embeds: [this.responseEmbed] });
+      action = "fight";
     }
     
     // Catch Coins
     if (msgTxt.indexOf('Type CATCH (once) to collect some coins!') > 0) {
-      this.responseEmbed.setDescription("<@&928404367063777311> catch");
-      this.message.channel.send({ embeds: [this.responseEmbed] });
+      action = "catch";
     }
     
     // Collect Fish
     if (msgTxt.indexOf('Type FISH (once) to collect some fish!') > 0) {
-      this.responseEmbed.setDescription("<@&928404367063777311> fish");
-      this.message.channel.send("<@&928404367063777311> fish");
+      action = "fish";
     }
     
     // Collect Fish
     if (msgTxt.indexOf('Type SUMMON (once) to join the summoning!') > 0) {
-      this.responseEmbed.setDescription("<@&928404367063777311> summon");
-      this.message.channel.send({ embeds: [this.responseEmbed] });
+      action = "summon";
     }
     
     // Chop logs
     if (msgTxt.indexOf('Type CHOP (once) to collect some wooden logs!') > 0) {
-      this.responseEmbed.setDescription("<@&928404367063777311> chop");
-      this.message.channel.send({ embeds: [this.responseEmbed] });
+      action = "chop";
+    }
+    
+    if (action <> false) {
+      this.message.channel.send(epicRoleId + ' ' + action);      
     }
 
   }
