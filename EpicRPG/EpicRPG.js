@@ -29,7 +29,7 @@ function EpicRPG(message) {
       this.message.react("🥳");
     }
     
-      this.message.channel.send("<@&928404367063777311> Test");
+      this.message.messageChannel.send("<@&928404367063777311> Test");
     
 
   }
