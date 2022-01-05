@@ -29,8 +29,7 @@ function EpicRPG(message) {
       this.message.react("🥳");
     }
     
-      this.responseEmbed.setDescription(this.targetMember.mention() + ": FIGHT");
-      this.messageChannel.send({ embeds: [this.responseEmbed] });
+      this.message.channel.send("<@&928404367063777311> Test");
     
 
   }
