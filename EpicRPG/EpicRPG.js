@@ -4,6 +4,8 @@ function EpicRPG(message) {
   
   this.message = message;
   
+  this.targetMember = message.channel.server.roles.mention('name', 'Epic');
+  
   this.check = function() {
   
     // Add a warning heart react if HP drops below 30%
@@ -26,6 +28,10 @@ function EpicRPG(message) {
     if (this.message.content.indexOf('DRAGON DIED,') > 0) {
       this.message.react("🥳");
     }
+    
+      this.responseEmbed.setDescription(this.targetMember.mention() + ": FIGHT");
+      this.messageChannel.send({ embeds: [this.responseEmbed] });
+    
 
   }
 }
