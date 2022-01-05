@@ -3,9 +3,6 @@ const { Intents } = require('discord.js');
 function EpicRPG(message) {
   
   this.message = message;
-  
-  this.targetMember = message.channel.server.roles.mention('name', 'Epic');
-  
   this.check = function() {
   
     // Add a warning heart react if HP drops below 30%
