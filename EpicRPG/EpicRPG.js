@@ -1,8 +1,11 @@
 const { Intents } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 function EpicRPG(message) {
   
   this.message = message;
+  this.responseEmbed = new MessageEmbed();
+  
   this.check = function() {
   
     // Add a warning heart react if HP drops below 30%
