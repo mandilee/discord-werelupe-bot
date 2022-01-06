@@ -53,8 +53,6 @@ function EpicRPG(message) {
         if (this.action != false) {
           this.message.channel.send(this.epicRoleId + ' ' + this.action);  
           return;
-        } else {
-          this.message.channel.send(fullText);  
         }
       } // for
     } // this.message.embeds.length
