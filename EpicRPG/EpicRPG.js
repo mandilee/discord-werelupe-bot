@@ -37,17 +37,17 @@ function EpicRPG(message) {
         if (fullText.includes('Type join to join the arena')) {
           this.action = 'join';
         } else if (fullText.includes('Type fight to help and get a reward')) {
-          this.action  'fight';
+          this.action = 'fight';
         } else if (fullText.includes('Type CATCH (once) to collect some coins')) {
-          this.action 'catch';
+          this.action = 'catch';
         } else if (fullText.includes('Type FISH (once) to collect some fish')) {
-          this.action  'fish';
+          this.action = 'fish';
         } else if (fullText.includes('Type SUMMON (once) to join the summoning')) {
-          this.action  'summon';
+          this.action = 'summon';
         } else if (fullText.includes('Type CHOP (once) to collect some wooden logs')) {
-          this.action  'chop';
+          this.action = 'chop';
         }  else if (fullText.includes('Adventure')) {
-          this.action 'test';
+          this.action = 'test';
         } 
 
         if (this.action != false) {
