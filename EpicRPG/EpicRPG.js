@@ -31,7 +31,7 @@ function EpicRPG(message) {
       this.message.react("🥳");
     }
 
-    this.action = this.checkEmbed();
+    this.action = this.checkEmbed;
     if (this.action != false) {
       this.message.channel.send(epicRoleId + ' ' + this.action);      
     }
