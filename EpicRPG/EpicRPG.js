@@ -40,7 +40,7 @@ function EpicRPG(message) {
     if (this.message.embeds.length > 0) {
       for (let embed of this.message.embeds) {
         
-        let fullText = embed.description + ' ' embed.title + ' ';
+        let fullText = embed.description + ' ' + embed.title + ' ';
         
         for (let field of embed.fields) {
           fullText += field.value + ' ' + field.name;
