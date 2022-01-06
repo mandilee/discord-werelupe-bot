@@ -36,28 +36,28 @@ function EpicRPG(message) {
       action = "join";
     }
     
-    for (let embed of this.message.embeds) {
-      if (embed.description.includes('Type fight to help and get a reward')) {
-        action = 'fight';
-      } else if (embed.description.includes('Type CATCH (once) to collect some coins')) {
-        action = 'catch';
-      } else if (embed.description.includes('Type FISH (once) to collect some fish')) {
-        action = 'fish';
-      } else if (embed.description.includes('Type SUMMON (once) to join the summoning')) {
-        action = 'summon';
-      } else if (embed.description.includes('Type CHOP (once) to collect some wooden logs')) {
-        action = 'chop';
-      }  else if (embed.description.includes('Adventure ')) {
-        action = 'test';
-      } 
+    if (this.message.embeds.length > 0){
+      for (let embed of this.message.embeds) {
+        if (embed.description.includes('Type fight to help and get a reward')) {
+          action = 'fight';
+        } else if (embed.description.includes('Type CATCH (once) to collect some coins')) {
+          action = 'catch';
+        } else if (embed.description.includes('Type FISH (once) to collect some fish')) {
+          action = 'fish';
+        } else if (embed.description.includes('Type SUMMON (once) to join the summoning')) {
+          action = 'summon';
+        } else if (embed.description.includes('Type CHOP (once) to collect some wooden logs')) {
+          action = 'chop';
+        }  else if (embed.description.includes('Adventure ')) {
+          action = 'test';
+        } 
+        }
+      if (action != false) {
+        this.message.channel.send(epicRoleId + ' ' + action);      
+      }
     }
-    
-    
-    if (action != false) {
-      this.message.channel.send(epicRoleId + ' ' + action);      
-    }
-
   }
+  
 }
     
 module.exports = { EpicRPG }
