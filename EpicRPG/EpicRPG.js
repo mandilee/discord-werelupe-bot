@@ -3,10 +3,10 @@ const { Intents } = require('discord.js');
 function EpicRPG(message) {
 
   this.message = message;
+  this.action = false;
 
   let msgTxt = this.message.content;
   let epicRoleId = '<@&928404367063777311>';
-  let action = false;
 
   this.check = function() {
 
@@ -31,44 +31,42 @@ function EpicRPG(message) {
       this.message.react("🥳");
     }
 
+    this.action = this.checkEmbed();
+    if (this.action != false) {
+      this.message.channel.send(epicRoleId + ' ' + this.action);      
+    }
+  
+  this.checkEmbed = function() {
     if (this.message.embeds.length > 0) {
       for (let embed of this.message.embeds) {
-// this.message.channel.send('author - ' + embed.author[0]); 
-// this.message.channel.send('description - ' + embed.description); // null
-// this.message.channel.send('footer - ' + embed.footer[0]); 
-// this.message.channel.send('title - ' + embed.title); // null
+        
+        let fullText = embed.description + ' ' embed.title + ' ';
         
         for (let field of embed.fields) {
-          this.message.channel.send('field value - ' + field.value); 
-          this.message.channel.send('field name - ' + field.name); 
-          if (field.value.includes('EPIC fish')) {
-            action = 'join';
-          }
+          fullText += field.value + ' ' + field.name;
         }
       
-        /*
-        if (embed.description.includes('Type join to join the arena')) {
-          action = 'join';
-        } else if (embed.description.includes('Type fight to help and get a reward')) {
-          action = 'fight';
-        } else if (embed.description.includes('Type CATCH (once) to collect some coins')) {
-          action = 'catch';
-        } else if (embed.description.includes('Type FISH (once) to collect some fish')) {
-          action = 'fish';
-        } else if (embed.description.includes('Type SUMMON (once) to join the summoning')) {
-          action = 'summon';
-        } else if (embed.description.includes('Type CHOP (once) to collect some wooden logs')) {
-          action = 'chop';
-        }  else if (embed.description.includes('Adventure ')) {
-          action = 'test';
+        if (fullText.includes('Type join to join the arena')) {
+          return 'join';
+        } else if (fullText.includes('Type fight to help and get a reward')) {
+          return 'fight';
+        } else if (fullText.includes('Type CATCH (once) to collect some coins')) {
+          return 'catch';
+        } else if (fullText.includes('Type FISH (once) to collect some fish')) {
+          return 'fish';
+        } else if (fullText.includes('Type SUMMON (once) to join the summoning')) {
+          return 'summon';
+        } else if (fullText.includes('Type CHOP (once) to collect some wooden logs')) {
+          return 'chop';
+        }  else if (fullText.includes('Adventure ')) {
+          return 'test';
         } 
-        //*/
 
-        if (action != false) {
-          this.message.channel.send(epicRoleId + ' ' + action);      
-        }
       }
     }
+  }
+    
+    return false;
   }
 }
 
