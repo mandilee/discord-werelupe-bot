@@ -38,7 +38,7 @@ function EpicRPG(message) {
 // this.message.channel.send('footer - ' + embed.footer[0]); 
 // this.message.channel.send('title - ' + embed.title); // null
         
-        for (let field of this.embed.fields) {
+        for (let field of embed.fields) {
           this.message.channel.send('field value - ' + field.value); 
           this.message.channel.send('field name - ' + field.name); 
           if (field.value.includes('EPIC fish')) {
