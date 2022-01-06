@@ -36,30 +36,22 @@ function EpicRPG(message) {
       action = "join";
     }
     
-    // Fight Miniboss
-    if (msgTxt.indexOf('Type fight to help and get a reward!') > 0) {
-      action = "fight";
+    for (let embed of this.message.embeds) {
+      if (embed.description.includes('Type fight to help and get a reward')) {
+        action = 'fight';
+      } else if (embed.description.includes('Type CATCH (once) to collect some coins')) {
+        action = 'catch';
+      } else if (embed.description.includes('Type FISH (once) to collect some fish')) {
+        action = 'fish';
+      } else if (embed.description.includes('Type SUMMON (once) to join the summoning')) {
+        action = 'summon';
+      } else if (embed.description.includes('Type CHOP (once) to collect some wooden logs')) {
+        action = 'chop';
+      }  else if (embed.description.includes('Adventure ')) {
+        action = 'test';
+      } 
     }
     
-    // Catch Coins
-    if (msgTxt.indexOf('Type CATCH (once) to collect some coins!') > 0) {
-      action = "catch";
-    }
-    
-    // Collect Fish
-    if (msgTxt.indexOf('Type FISH (once) to collect some fish!') > 0) {
-      action = "fish";
-    }
-    
-    // Collect Fish
-    if (msgTxt.indexOf('Type SUMMON (once) to join the summoning!') > 0) {
-      action = "summon";
-    }
-    
-    // Chop logs
-    if (msgTxt.indexOf('Type CHOP (once) to collect some wooden logs!') > 0) {
-      action = "chop";
-    }
     
     if (action != false) {
       this.message.channel.send(epicRoleId + ' ' + action);      
