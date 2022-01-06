@@ -32,12 +32,19 @@ function EpicRPG(message) {
     }
 
     if (this.message.embeds.length > 0) {
-this.message.channel.send('Number embeds - ' + this.message.embeds.length); 
       for (let embed of this.message.embeds) {
-this.message.channel.send('author - ' + embed.author[0]); 
+// this.message.channel.send('author - ' + embed.author[0]); 
 // this.message.channel.send('description - ' + embed.description); // null
-this.message.channel.send('footer - ' + embed.footer[0]); 
+// this.message.channel.send('footer - ' + embed.footer[0]); 
 // this.message.channel.send('title - ' + embed.title); // null
+        
+        for (let field of this.embed.fields) {
+          this.message.channel.send('field value - ' + field.value); 
+          this.message.channel.send('field name - ' + field.name); 
+          if (field.value.includes('EPIC fish')) {
+            action = 'join';
+          }
+        }
       
         /*
         if (embed.description.includes('Type join to join the arena')) {
