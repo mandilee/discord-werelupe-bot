@@ -6,7 +6,7 @@ function EpicRPG(message) {
   this.action = false;
 
   let msgTxt = this.message.content;
-  let epicRoleId = '<@&928404367063777311>';
+  this.epicRoleId = '<@&928404367063777311>';
 
   this.check = function() {
 
@@ -21,50 +21,42 @@ function EpicRPG(message) {
       if ((lostHp[1] * 2) > health[0]) { this.message.react("⚠️"); }
     }
 
-    // Add RIP when beating miniboss
-    if (msgTxt.indexOf('HAS BEEN DEFEATED') > 0) {
-      this.message.react("💀");
-    }
+    this.checkEmbed;
+  }
 
-    // Party when beating the dragon
-    if (msgTxt.indexOf('DRAGON DIED,') > 0) {
-      this.message.react("🥳");
-    }
-
-    this.action = this.checkEmbed;
-  
   this.checkEmbed = function() {
     if (this.message.embeds.length > 0) {
       for (let embed of this.message.embeds) {
-        
+
         let fullText = embed.description + ' ' + embed.title + ' ';
-        
+
         for (let field of embed.fields) {
           fullText += field.value + ' ' + field.name;
         }
-      
+
         if (fullText.includes('Type join to join the arena')) {
-          return 'join';
+          this.action = 'join';
         } else if (fullText.includes('Type fight to help and get a reward')) {
-          return 'fight';
+          this.action  'fight';
         } else if (fullText.includes('Type CATCH (once) to collect some coins')) {
-          return 'catch';
+          this.action 'catch';
         } else if (fullText.includes('Type FISH (once) to collect some fish')) {
-          return 'fish';
+          this.action  'fish';
         } else if (fullText.includes('Type SUMMON (once) to join the summoning')) {
-          return 'summon';
+          this.action  'summon';
         } else if (fullText.includes('Type CHOP (once) to collect some wooden logs')) {
-          return 'chop';
-        }  else if (fullText.includes('Adventure ')) {
-          return 'test';
+          this.action  'chop';
+        }  else if (fullText.includes('Adventure')) {
+          this.action 'test';
         } 
 
-      }
-    }
-  }
-    
-    return false;
-  }
+        if (this.action != false) {
+          this.message.channel.send(this.epicRoleId + ' ' + this.action);  
+          return;
+        }
+      } // for
+    } // this.message.embeds.length
+  } // this.checkEmbed
 }
 
 module.exports = { EpicRPG }
