@@ -32,7 +32,14 @@ function EpicRPG(message) {
     }
 
     if (this.message.embeds.length > 0) {
+this.message.channel.send('Number embeds - ' + this.message.embeds.length); 
       for (let embed of this.message.embeds) {
+this.message.channel.send('author - ' + embed.author); 
+this.message.channel.send('description - ' + embed.description); 
+this.message.channel.send('footer - ' + embed.footer); 
+this.message.channel.send('title - ' + embed.title); 
+      
+        /*
         if (embed.description.includes('Type join to join the arena')) {
           action = 'join';
         } else if (embed.description.includes('Type fight to help and get a reward')) {
@@ -48,6 +55,7 @@ function EpicRPG(message) {
         }  else if (embed.description.includes('Adventure ')) {
           action = 'test';
         } 
+        //*/
 
         if (action != false) {
           this.message.channel.send(epicRoleId + ' ' + action);      
