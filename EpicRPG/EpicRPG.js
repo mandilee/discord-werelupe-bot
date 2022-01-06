@@ -34,10 +34,10 @@ function EpicRPG(message) {
     if (this.message.embeds.length > 0) {
 this.message.channel.send('Number embeds - ' + this.message.embeds.length); 
       for (let embed of this.message.embeds) {
-this.message.channel.send('author - ' + embed.author); 
-this.message.channel.send('description - ' + embed.description); 
-this.message.channel.send('footer - ' + embed.footer); 
-this.message.channel.send('title - ' + embed.title); 
+this.message.channel.send('author - ' + embed.author[0]); 
+// this.message.channel.send('description - ' + embed.description); // null
+this.message.channel.send('footer - ' + embed.footer[0]); 
+// this.message.channel.send('title - ' + embed.title); // null
       
         /*
         if (embed.description.includes('Type join to join the arena')) {
