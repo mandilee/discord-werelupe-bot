@@ -38,6 +38,9 @@ const ig = require('./InsultGiver/InsultGiver.js');
 //import EpicRPG
 const rpg = require('./EpicRPG/EpicRPG.js');
 
+//import starboard
+const sb = require('./Starboard/starboard.js');
+
 //Function to check if a string matches regardless of case
 function sameCase(str) {
   return /^[A-Z]+$/.test(str) || /^[a-z]+$/.test(str);
@@ -115,16 +118,6 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
     insulter = new ig.InsultGiver (message);
     insulter.give();
   }
-  
-  if (lowerCaseMessageContent.indexOf("bad bot") >= 0 || lowerCaseMessageContent.indexOf("bad werelupe") >= 0) {
-    message.channel.send({
-          embeds: [
-            {
-              title: 'Werelupe-bot is sorry ☹️'
-            }
-          ],
-        })
-  }
 
 
   //Compliment Giver for Neo
@@ -150,7 +143,7 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
 
   //Neopet Responder Starts Here - Rodaddy 2021
   //new Regex to determine a neopet is mentioned
-  let neopet = /.*(8-bit|Agueena|Alien|Apple|Asparagus|Aubergine|Avocado|Baby|Biscuit|Blue|Blueberry|Brown|Burlap|Camouflage|Candy|Carrot|Checkered|Chocolate|Chokato|Christmas|Clay|Cloud|Coconut|Coffee|Corn|Custard|Darigan|Desert|Dimensional|Disco|Durian|Elderlyboy|Elderlygirl|Electric|Eventide|Faerie|Fire|Garlic|Ghost|Glass|Glowing|Gold|Gooseberry|Grape|Green|Grey|Halloween|Ice|Invisible|Island|Jelly|Juppieswirl|Lemon|Lime|Magma|Mallow|Maractite|Maraquan|Marble|Mosaic|Msp|Mutant|Oilpaint|Onion|Orange|Origami|Pastel|Pea|Peach|Pear|Pepper|Pineapple|Pink|Pirate|Plum|Plushie|Polkadot|Purple|Quigukiboy|Quigukigir|Rainbow|Red|Relic|Robot|Royal|Royalboy|Royalgirl|Shadow|Silver|Sketch|Skunk|Slushie|Snot|Snow|Speckled|Split|Sponge|Spotted|Starry|Stealthy|Steampunk|Stone|Strawberry|Striped|Swampgas|Thornberry|Tomato|Toy|Transparent|Tyrannian|Ummagine|Usukiboy|Usukigirl|Water|White|Woodland|Wraith|Yellow|Zombie)\s(Acara|Aisha|Blumaroo|Bori|Bruce|Buzz|Chia|Chomby|Cybunny|Draik|Elephante|Eyrie|Flotsam|Gelert|Gnorbu|Grarrl|Grundo|Hissi|Ixi|Jetsam|Jubjub|Kacheek|Kau|Kiko|Koi|Korbat|Kougra|Krawk|Kyrii|Lenny|Lupe|Lutari|Meerca|Moehog|Mynci|Nimmo|Ogrin|Peophin|Poogle|Pteri|Quiggle|Ruki|Scorchio|Shoyru|Skeith|SlushieChia|Techo|Tonu|Tuskaninny|Uni|Usul|Vandagyre|Wocky|Xweetok|Yurble|Zafara).*/i;
+  let neopet = /.*(8-bit|Agueena|Alien|Angel|Apple|Asparagus|Aubergine|Avocado|Baby|Biscuit|Blue|Blueberry|Brown|Burlap|Camouflage|Candy|Carrot|Checkered|Chocolate|Chokato|Christmas|Clay|Cloud|Coconut|Coffee|Corn|Custard|Darigan|Desert|Dimensional|Disco|Durian|Elderlyboy|Elderlygirl|Electric|Eventide|Faerie|Fire|Garlic|Ghost|Glass|Glowing|Gold|Gooseberry|Grape|Green|Grey|Halloween|Ice|Invisible|Island|Jelly|Juppieswirl|Lemon|Lime|Magma|Mallow|Maractite|Maraquan|Marble|Mosaic|Msp|Mutant|Oilpaint|Onion|Orange|Origami|Pastel|Pea|Peach|Pear|Pepper|Pineapple|Pink|Pirate|Plum|Plushie|Polkadot|Purple|Quigukiboy|Quigukigir|Rainbow|Red|Relic|Robot|Royal|Royalboy|Royalgirl|Shadow|Silver|Sketch|Skunk|Slushie|Snot|Snow|Speckled|Split|Sponge|Spotted|Starry|Stealthy|Steampunk|Stone|Strawberry|Striped|Swampgas|Thornberry|Tomato|Toy|Transparent|Tyrannian|Ummagine|Usukiboy|Usukigirl|Water|White|Woodland|Wraith|Yellow|Zombie)\s(Acara|Aisha|Blumaroo|Bori|Bruce|Buzz|Chia|Chomby|Cybunny|Draik|Elephante|Eyrie|Flotsam|Gelert|Gnorbu|Grarrl|Grundo|Hissi|Ixi|Jetsam|Jubjub|Kacheek|Kau|Kiko|Koi|Korbat|Kougra|Krawk|Kyrii|Lenny|Lupe|Lutari|Meerca|Moehog|Mynci|Nimmo|Ogrin|Peophin|Poogle|Pteri|Quiggle|Ruki|Scorchio|Shoyru|Skeith|SlushieChia|Techo|Tonu|Tuskaninny|Uni|Usul|Vandagyre|Wocky|Xweetok|Yurble|Zafara).*/i;
 
   if (neopet.exec(message.content)) {
 
@@ -206,30 +199,10 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
 
         //import responses need to fix this so the + variables work
         const response = require('./NeopetFetcher/NeopetCaptions.json');
-
-        /*
-        const response = [
-          "That's a cute one!",
-          "I love " + colorCap + " pets!",
-          "I don't know how I feel about that " + petCap + "...",
-          "That's one ugly " + petCap + "...",
-          "What a beautiful pet!",
-          "Is this is the pet you're looking for? *jedi hand swish*",
-          "This " + colorCap + " " + petCap + " loves you!",
-          "This pet is sexy...just like you",
-          "Never ever piss one of these off.",
-          "Bruh",
-          "This " + colorCap + " " + petCap + " swings by and says, \"**I hope you're having fun!**\"",
-          "Uhhh...",
-          "So pretty omg! 🤩",
-          "If only I could afford a " + colorCap + " Paint Brush...",
-          "You should definitely give your neopoints to Rodolfo so he can make this pet"
-        ];
-        //*/
         
         //RNG the response
         var rng = getRandomInt(response.length);
-        //get the response here
+        //get the response here; replace the %c and %p placeholders as needed
         finalCaption = response[rng].replace('%c', colorCap).replace('%p', petCap);
 
         //special caption for aubergine chia
@@ -262,6 +235,17 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
   // message.content.toLowerCase().includes("TEXTHERE") does not work in IE fun fact
 
   //Random React Rules
+
+  if (lowerCaseMessageContent.indexOf("bad bot") >= 0) {
+    message.channel.send({
+          embeds: [
+            {
+              title: 'Please forgive Werelupe-bot',
+              description: 'Werelupe-bot is sorry ☹️'
+            }
+          ],
+        })
+  }
 
   if (lowerCaseMessageContent.indexOf("werelupe") >= 0) {
     console.log("Someone Said Werelupe!!");
@@ -322,9 +306,15 @@ client.on("messageCreate", (message) => {//Do Not Close This Function Till Later
   }
   
   //TM react to Ruby
-  if (message.content.indexOf("ruby") >= 0 &&
-    message.content.indexOf("list") >= 0) {
+  if (lowerCaseMessageContent.indexOf("ruby") >= 0 &&
+    lowerCaseMessageContent.indexOf("list") >= 0) {
     message.react("™️");
+  }
+
+  //panda react to panpan
+  if (lowerCaseMessageContent.indexOf("pan") >= 0 ||
+    lowerCaseMessageContent.indexOf("panpan") >= 0) {
+    message.react("931286481262215178");
   }
   //End Reactions Rules
 
